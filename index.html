@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVMS Encyclopaedia Veterinariae - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2c5e92;
+            --secondary: #4caf50;
+            --accent: #ff9800;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --text: #444;
+            --text-light: #777;
+            --border: #eaeaea;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #f5f7fa;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-center h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #234a75;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-left: 15px;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .main-nav a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .main-nav a:hover {
+            color: var(--primary);
+        }
+        
+        .main-nav a.active {
+            color: var(--primary);
+        }
+        
+        .main-nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 94, 146, 0.85), rgba(76, 175, 80, 0.8)), url('img/fmr-dean2.jpg') center/cover;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: white;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        /* Levels Section */
+        .levels-section {
+            background: #f8f9fa;
+        }
+
+        .level-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .level-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .level-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .level-card a {
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--secondary);
+        }
+
+        .level-card a i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .level-card a:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Footer Styles */
+        .main-footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding-top: 60px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .footer-logo p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                padding: 100px 0;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image {
+                padding: 0;
+                margin-bottom: 20px;
+            }
+
+            .about-content {
+                text-align: center;
+            }
+
+            .about-content h2:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-img">AV</div>
+                <div class="logo-text">
+                    <h1>AVMS</h1>
+                    <span>Encyclopaedia Veterinariae</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About AVMS</a></li>
+                    <li><a href="news.html">News & Updates</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="faculty.html">Faculty</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>AVMS Encyclopaedia Veterinariae</h1>
+                <p>Your ultimate digital companion for veterinary academic resources at Ahmadu Bello University, Zaria.</p>
+                <a href="resources.html" class="btn btn-primary">Browse Resources</a>
+            </div>
+        </section>
+
+        <section class="section about-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2>Our Mission</h2>
+                    <p>The AVMS Encyclopaedia Veterinariae is a comprehensive digital repository created by the Association of Veterinary Medical Students (AVMS), ABU Zaria Chapter. Our mission is to provide easy and organized access to academic resources, including lecture notes, handouts, textbooks, and past questions, to support the academic journey of every veterinary student.</p>
+                    <a href="about.html" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="img/fvm_gateway.jpg" alt="Veterinary student studying" loading="lazy" width="360">
+                </div>
+            </div>
+        </section>
+
+        <section class="section levels-section">
+            <div class="container text-center">
+                <h2>Quickly Access Your Level</h2>
+                <p>Jump straight to the resources you need by selecting your current level of study.</p>
+                <div class="level-cards-container">
+                    <div class="level-card">
+                        <h3>100 Level</h3>
+                        <p>DVM I</p>
+                        <a href="100l.html">View Resources <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="level-card">
+                        <h3>200 Level</h3>
+                        <p>DVM I</p>
+                        <a href="200l.html">View Resources <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="level-card">
+                        <h3>300 Level</h3>
+                        <p>DVM II</p>
+                        <a href="300l.html">View Resources <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="level-card">
+                        <h3>400 Level</h3>
+                        <p>DVM III</p>
+                        <a href="400l.html">View Resources <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="level-card">
+                        <h3>500 Level</h3>
+                        <p>DVM IV</p>
+                        <a href="500l.html">View Resources <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <div class="logo-img">AV</div>
+                        <div>
+                            <h3>AVMS Encyclopaedia Veterinariae</h3>
+                            <p>Faculty of Veterinary Medicine<br>Ahmadu Bello University, Zaria</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">A comprehensive digital repository for veterinary students at ABU Zaria, providing access to academic resources, handouts, textbooks, and past questions.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="about.html">About AVMS</a></li>
+                        <li><a href="news.html">News & Updates</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faculty.html">Faculty</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Information</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> avmsabuzaria100@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Faculty of Veterinary Medicine, ABU, Zaria</li>
+                        <li><i class="fas fa-phone"></i> +234 902 233 4102</li>
+                    </ul>
+                    <div class="bank-details-footer">
+                        <h4>Bank Account</h4>
+                        <p><strong>First Bank of Nigeria</strong></p>
+                        <p>Acc. No: <strong>3068708848</strong></p>
+                        <p>Acc. Name: <strong>Association of Veterinary Medical Students ABU Zaria</strong></p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Association of Veterinary Medical Students (AVMS), ABU Zaria Chapter. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('.main-nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
